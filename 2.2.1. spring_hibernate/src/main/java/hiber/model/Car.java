@@ -8,7 +8,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
     private String model;
@@ -16,7 +16,7 @@ public class Car {
     @Column
     private int series;
 
-    @OneToOne (mappedBy = "car")
+    @OneToOne (mappedBy = "car", cascade = CascadeType.ALL)
     private User user;
 
     public Car() {
@@ -49,5 +49,13 @@ public class Car {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", series=" + series +
+                '}';
     }
 }
